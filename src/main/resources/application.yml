@@ -1,0 +1,39 @@
+spring:
+  datasource:
+    driver-class-name: org.mariadb.jdbc.Driver
+    url: ${DB_URL}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: none
+    properties:
+      hibernate:
+        format_sql: true
+        use_sql_comments: true
+        dialect: org.hibernate.dialect.MariaDBDialect
+
+  kafka:
+    bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS}
+
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      acks: 1
+      retries: 3
+      linger-ms: 1
+
+    admin:
+      auto-create: true  # 필요 시 토픽 자동 생성 허용
+
+custom:
+  kafka:
+    notification-topic: ${KAFKA_EVALUATION_NOTIFICATION_TOPIC}
+
+evaluation-service:
+  url: ${EVALUATION_SERVICE_URL}
+
+batch:
+  jwt-token: ${BATCH_JWT_TOKEN}

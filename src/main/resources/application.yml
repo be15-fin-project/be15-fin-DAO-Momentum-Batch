@@ -37,3 +37,16 @@ evaluation-service:
 
 batch:
   jwt-token: ${BATCH_JWT_TOKEN}
+
+server:
+  servlet:
+    context-path: /api/backend-batch/v1
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health
+  endpoint:
+    health:
+      show-details: always
